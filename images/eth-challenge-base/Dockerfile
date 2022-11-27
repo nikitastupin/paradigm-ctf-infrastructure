@@ -1,4 +1,5 @@
-FROM gcr.io/paradigmxyz/ctf/base:latest
+ARG DOCKERHUB_USERNAME=nikitastupin
+FROM ${DOCKERHUB_USERNAME}/ctf/base:latest
 
 ENV HTTP_PORT=8545
 
