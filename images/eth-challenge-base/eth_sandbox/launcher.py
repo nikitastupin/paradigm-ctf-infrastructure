@@ -34,7 +34,7 @@ class Ticket:
 
 def check_ticket(ticket: str) -> Ticket:
     if ENV == "dev":
-        return Ticket(challenge_id=CHALLENGE_ID, team_id="team")
+        return Ticket(challenge_id=CHALLENGE_ID, team_id=ticket)
 
     ticket_info = requests.get(
         f"https://us-central1-paradigm-ctf-2022.cloudfunctions.net/checkTicket?ticket={ticket}"
