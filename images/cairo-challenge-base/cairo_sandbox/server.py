@@ -11,7 +11,7 @@ from uuid import uuid4
 
 import requests
 from flask import Flask, Response, request
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from starknet_py.net.gateway_client import GatewayClient
 from starknet_py.net.networks import TESTNET
 
@@ -131,7 +131,6 @@ def index():
 
 
 @app.route("/new", methods=["POST"])
-@cross_origin()
 def create():
     if not is_request_authenticated(request):
         return {
@@ -173,7 +172,6 @@ def create():
 
 
 @app.route("/kill", methods=["POST"])
-@cross_origin()
 def kill():
     if not is_request_authenticated(request):
         return {
@@ -205,7 +203,6 @@ ALLOWED_NAMESPACES = ["starknet"]
 
 
 @app.route("/<path:path>", methods=["GET"])
-@cross_origin()
 def proxy_get(path):
     uuid = request.authorization.username
     if not has_instance_by_uuid(uuid):
@@ -234,7 +231,6 @@ def proxy_get(path):
 
 
 @app.route("/<path:path>", methods=["POST"])
-@cross_origin()
 def proxy(path):
     uuid = request.authorization.username
 
