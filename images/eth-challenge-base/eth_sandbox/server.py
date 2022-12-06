@@ -14,7 +14,7 @@ from uuid import uuid4
 import requests
 from eth_account.hdaccount import generate_mnemonic
 from flask import Flask, Response, redirect, request
-from flask_cors import CORS, cross_origin
+from flask_cors import CORS
 from web3 import Web3
 
 from eth_sandbox import *
@@ -135,7 +135,6 @@ def index():
 
 
 @app.route("/new", methods=["POST"])
-@cross_origin()
 def create():
     if not is_request_authenticated(request):
         return {
@@ -177,7 +176,6 @@ def create():
 
 
 @app.route("/kill", methods=["POST"])
-@cross_origin()
 def kill():
     if not is_request_authenticated(request):
         return {
@@ -209,7 +207,6 @@ ALLOWED_NAMESPACES = ["web3", "eth", "net"]
 
 
 @app.route("/<string:uuid>", methods=["POST"])
-@cross_origin()
 def proxy(uuid):
     body = request.get_json()
     if not body:
